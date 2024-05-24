@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}">
+</head>
+<body>
+<h1>게시글 상세</h1>
+
+<p>ID: <span th:text="${board.id}"></span></p>
+<p>이름: <span th:text="${board.name}"></span></p>
+<p>제목: <span th:text="${board.title}"></span></p>
+<p>내용: <span th:text="${board.content}"></span></p>
+<p>작성일: <span th:text="${#temporals.format(board.createdAt, 'yyyy/MM/dd HH:mm')}"></span></p>
+<p>수정일: <span th:text="${#temporals.format(board.updatedAt, 'yyyy/MM/dd HH:mm')}"></span></p>
+
+<div class="action-links">
+    <a th:href="@{/list}">목록으로</a>
+    <a th:href="@{/list/updateform(id=${board.id})}">수정</a>
+    <a th:href="@{/list/deleteform(id=${board.id})}">삭제</a>
+</div>
+</body>
+</html>
