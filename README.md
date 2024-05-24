@@ -1,4 +1,4 @@
-![img_10](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/760a6b00-3fbf-495d-b459-80d69279ad91)# 개요
+# 개요
 
 본 프로젝트에서는 학생들이 Spring Boot, Spring Data JDBC, 그리고 Spring MVC를 활용하여 웹 애플리케이션을 개발합니다.
 
@@ -159,40 +159,7 @@ ID, 이름, 제목, 암호, 내용, create_at, update_at를 ID desc 제한 0,5�
  - 이름, 제목, 본문, 암호 필드를 포함하며, 사용자는 이를 수정할 수 있습니다.
  - 확인 버튼을 클릭하면 `/update`로 수정 요청을 보내고, 수정이 완료되면 해당 게시글의 상세 페이지(`/view?id=아이디`)로 리다이렉트됩니다.
 
----
 
-### 결과물 
-
-1. 글 목록 보기
-
-![img_3](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/7b921f27-d29b-4522-a880-b6c5b76b2552)
-
-
-
----
-
-2. 글 상세 조회
-
-![img_5](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/a3657385-50ea-47ed-8721-767c30d9a4c7)
-
-
----
-
-3. 글 등록
-
-![img_7](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/fe8924c8-3118-4dcd-a4c7-9d8a7398c808)
-
----
-
-4. 글 수정
-
-![img_9](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/d00739e4-78d2-450a-a3d3-5bfa17d94073)
-
----
-
-5. 글 삭제
-
-![img_10.png…]()
 
 
 
