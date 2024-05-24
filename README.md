@@ -1,4 +1,4 @@
-# 개요
+![img_10](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/760a6b00-3fbf-495d-b459-80d69279ad91)# 개요
 
 본 프로젝트에서는 학생들이 Spring Boot, Spring Data JDBC, 그리고 Spring MVC를 활용하여 웹 애플리케이션을 개발합니다.
 
@@ -7,51 +7,51 @@
 ## 프로젝트 요구 사항
 
 - 글 등록
-    - 이름, 제목, 암호, 본문을 입력
-    - 등록일, ID는 자동으로 저장
+ - 이름, 제목, 암호, 본문을 입력
+ - 등록일, ID는 자동으로 저장
 - 글 목록 보기
-    - 최신 글부터 보여짐
-    - ID, 제목, 이름, 등록일(YYYY/MM/DD) 형식으로 목록이 보여짐
-    - 페이징 처리 필요
+ - 최신 글부터 보여짐
+ - ID, 제목, 이름, 등록일(YYYY/MM/DD) 형식으로 목록이 보여짐
+ - 페이징 처리 필요
 - 글 상세 조회
-    - 암호는 보여지면 안됨
-    - 글 등록일은 YYYY/MM/DD hh24:mi 형식으로 보여짐
+ - 암호는 보여지면 안됨
+ - 글 등록일은 YYYY/MM/DD hh24:mi 형식으로 보여짐
 
 ---
 
 - 수정
-    - 이름, 제목, 본문을 수정
-    - 암호는 글 등록시 입력했던 암호를 입력해야함
-    - 수정일은 자동으로 저장
+ - 이름, 제목, 본문을 수정
+ - 암호는 글 등록시 입력했던 암호를 입력해야함
+ - 수정일은 자동으로 저장
 - 삭제
-    - 암호는 글 등록시 입력했던 암호를 입력해야함
+ - 암호는 글 등록시 입력했던 암호를 입력해야함
 
 ---
 
-## DB 테이블 설계 및 Sample Data
+## DB 테이블 설계 및 표본 데이터
 
 ---
 
 0. 테이블 삭제
 
 ```
-drop table board;
+드롭 테이블 보드
 ```
 
 ---
 
-1. **Board 테이블**
-    - 사용자 정보를 저장합니다.
+1. **보드 테이블**
+ - 사용자 정보를 저장합니다.
 
-```sql
-CREATE TABLE board (
-id BIGINT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(100) NOT NULL,
-title VARCHAR(255) NOT NULL,
+'''sql
+CREATE TABLE 보드(
+IDBIGINT AUTO_증강 기본 키,
+이름 VARCHAR(100) NULL이 아닙니다.
+제목 VARCHAR(255) NULL이 아닙니다.
 password VARCHAR(255) NOT NULL, -- 암호는 해싱하여 저장하는 것이 좋습니다
-content TEXT NOT NULL,
-created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 등록일
-updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정일
+내용 텍스트가 NULL이 아닙니다.
+created_at DATETIME Default Current_Timestamp, -- 등록일
+update_at DATTIME Default Current_TIMESTAMP ON UPDATE Current_TIMESTAMP -- 수정일
 );
 
 ```
@@ -60,8 +60,8 @@ updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수
 
 ## 예제 데이터 삽입
 
-```sql
-INSERT INTO board (name, title, password, content) VALUES
+'''sql
+보드에 삽입(이름, 제목, 암호, 내용) 값
 ('김민수', '첫 번째 글입니다!', 'password123', '이것은 첫 번째 게시글의 내용입니다.'),
 ('이지은', '봄철 원예 팁', 'password123', '봄철 정원 가꾸기에 유용한 팁을 공유합니다.'),
 ('박영희', '올해의 여행지 추천 10곳', 'password123', '올해 방문하기 좋은 여행지 10곳을 소개합니다.'),
@@ -80,27 +80,27 @@ INSERT INTO board (name, title, password, content) VALUES
 
 ## 페이지 별로 데이터 읽어오기
 
-```sql
-select id, name, title, password, content, created_at, updated_at from board order by id desc limit 0,5;
+'''sql
+ID, 이름, 제목, 암호, 내용, create_at, update_at를 ID desc 제한 0,5에 따라 보드 순서에서 선택합니다.
 ```
 
 ---
 
 1. **SELECT 절**:
 
-    - `id`, `name`, `title`, `password`, `content`, `created_at`, `updated_at`: 이 쿼리에서는 게시판 테이블의 `id`, `name`, `title`, `password`, `content`, `created_at` (생성일시), `updated_at` (수정일시) 등 7개의 컬럼을 선택하고 있습니다. 이를 통해 각 게시글의 주요 정보와 함께 생성 및 수정 날짜를 확인할 수 있습니다.
+ -id', 'name', 'title', 'password', 'content', 'created_at', 'updated': id', 'name', 'password', 'created_at', 'content', 'created_at', 'updated', '수정일시', '등', '개의 컬럼을 선택하고 있습니다' 7이 쿼리에서는 게시판 테이블의 이를 통해 각 게시글의 주요 정보와 함께 생성 및 수정 날짜를 확인할 수 있습니다.
 
-2. **FROM 절**:
-    - `board`: 데이터를 검색할 테이블의 이름입니다. 이 경우, `board` 테이블에서 데이터를 추출합니다.
+2.**발신자 절**:
+ - `board`: 데이터를 검색할 테이블의 이름입니다. 이 경우, `board` 테이블에서 데이터를 추출합니다.
 
 ---
 
-3. **ORDER BY 절**:
+3. ** 주문 기준 절**:
 
-    - `ORDER BY id DESC`: 게시글을 `id` 컬럼을 기준으로 내림차순으로 정렬합니다. `id` 값이 큰 게시물일수록 더 최근에 작성된 게시물이기 때문에, 이 정렬을 통해 최신 게시물을 상위에 위치시킬 수 있습니다.
+ - `ORDER BY id DESC`: 게시글을 `id` 컬럼을 기준으로 내림차순으로 정렬합니다. `id` 값이 큰 게시물일수록 더 최근에 작성된 게시물이기 때문에, 이 정렬을 통해 최신 게시물을 상위에 위치시킬 수 있습니다.
 
 4. **LIMIT 절**:
-    - `LIMIT 0, 5`: 이 부분은 검색 결과의 양을 제한하는 데 사용됩니다. `LIMIT 0, 5`는 결과 집합의 첫 번째 행부터 시작하여 5개의 행을 반환하라는 의미입니다. 즉, 가장 최근에 등록된 게시글 5개를 가져옵니다.
+ - `LIMIT 0, 5`: 이 부분은 검색 결과의 양을 제한하는 데 사용됩니다. `LIMIT 0, 5`는 결과 집합의 첫 번째 행부터 시작하여 5개의 행을 반환하라는 의미입니다. 즉, 가장 최근에 등록된 게시글 5개를 가져옵니다.
 
 ---
 
@@ -110,54 +110,54 @@ select id, name, title, password, content, created_at, updated_at from board ord
 
 ### 1. 게시글 목록 보기 (`/list`)
 
-- **URL:** `/list`, `/list?page=2`
+- **URL:** '/list', '/list? page=2'
 - **기능:**
-    - 게시글 목록을 페이지별로 보여줍니다.
-    - `page` 파라미터가 없으면 기본적으로 1페이지를 보여줍니다.
-    - 각 페이지는 최신 글부터 보여지며, 페이징 처리가 적용되어 있습니다.
-    - 하단에는 페이지 네비게이터가 있어 다른 페이지로 쉽게 이동할 수 있습니다.
-    - 각 게시글은 ID, 제목, 이름, 등록일(YYYY/MM/DD 형식)로 목록이 구성됩니다.
+ - 게시글 목록을 페이지별로 보여줍니다.
+ - `page` 파라미터가 없으면 기본적으로 1페이지를 보여줍니다.
+ - 각 페이지는 최신 글부터 보여지며, 페이징 처리가 적용되어 있습니다.
+ - 하단에는 페이지 네비게이터가 있어 다른 페이지로 쉽게 이동할 수 있습니다.
+ - 각 게시글은 ID, 제목, 이름, 등록일(YYYY/MM/DD 형식)로 목록이 구성됩니다.
 
 ---
 
 ### 2. 게시글 상세 조회 (`/view?id=아이디`)
 
-- **URL:** `/view?id=아이디`
+- **URL:** '/view?id=아이디'
 - **기능:**
-    - 특정 게시글의 상세 내용을 보여줍니다.
-    - 삭제와 수정 링크를 제공하여 해당 기능을 수행할 수 있는 페이지로 이동할 수 있습니다.
-    - 게시글의 등록일은 YYYY/MM/DD hh24:mi 형식으로 표시됩니다.
-    - 게시글의 암호는 보여지지 않습니다.
+ - 특정 게시글의 상세 내용을 보여줍니다.
+ - 삭제와 수정 링크를 제공하여 해당 기능을 수행할 수 있는 페이지로 이동할 수 있습니다.
+ - 게시글의 등록일은 YYYY/MM/DD hh24:mi 형식으로 표시됩니다.
+ - 게시글의 암호는 보여지지 않습니다.
 
 ---
 
-### 3. 게시글 등록 폼 (`/writeform`)
+### 3. 게시글 등록 폼('/writeform')
 
-- **URL:** `/writeform`
+- **URL:** '/writeform'
 - **기능:**
-    - 특정 게시글을 쓰기위한 폼을 제공합니다.
-    - 사용자는 이름, 제목, 내용, 암호를 입력하고, 확인 버튼을 클릭하여 등록을 요청합니다.
-    - 모든 내용이 잘 입력되어 있을 경우 `/write`로 요청을 보내 등록 처리 후 `/list`로 리다이렉트됩니다.
+ - 특정 게시글을 쓰기위한 폼을 제공합니다.
+ - 사용자는 이름, 제목, 내용, 암호를 입력하고, 확인 버튼을 클릭하여 등록을 요청합니다.
+ - 모든 내용이 잘 입력되어 있을 경우 `/write`로 요청을 보내 등록 처리 후 `/list`로 리다이렉트됩니다.
 
 ---
 
 ### 4. 게시글 삭제 폼 (`/deleteform?id=아이디`)
 
-- **URL:** `/deleteform?id=아이디`
+- **URL:** '/deleteform?id=아이디'
 - **기능:**
-    - 특정 게시글을 삭제하기 위한 폼을 제공합니다.
-    - 사용자는 암호를 입력하고, 확인 버튼을 클릭하여 삭제를 요청합니다.
-    - 올바른 암호 입력 시, `/delete`로 요청을 보내 삭제 처리 후 `/list`로 리다이렉트됩니다.
+ - 특정 게시글을 삭제하기 위한 폼을 제공합니다.
+ - 사용자는 암호를 입력하고, 확인 버튼을 클릭하여 삭제를 요청합니다.
+ - 올바른 암호 입력 시, `/delete`로 요청을 보내 삭제 처리 후 `/list`로 리다이렉트됩니다.
 
 ---
 
 ### 5. 게시글 수정 폼 (`/updateform?id=아이디`)
 
-- **URL:** `/updateform?id=아이디`
+- **URL:** '/updateform?id=아이디'
 - **기능:**
-    - 특정 게시글을 수정하기 위한 폼을 제공합니다.
-    - 이름, 제목, 본문, 암호 필드를 포함하며, 사용자는 이를 수정할 수 있습니다.
-    - 확인 버튼을 클릭하면 `/update`로 수정 요청을 보내고, 수정이 완료되면 해당 게시글의 상세 페이지(`/view?id=아이디`)로 리다이렉트됩니다.
+ - 특정 게시글을 수정하기 위한 폼을 제공합니다.
+ - 이름, 제목, 본문, 암호 필드를 포함하며, 사용자는 이를 수정할 수 있습니다.
+ - 확인 버튼을 클릭하면 `/update`로 수정 요청을 보내고, 수정이 완료되면 해당 게시글의 상세 페이지(`/view?id=아이디`)로 리다이렉트됩니다.
 
 ---
 
@@ -165,31 +165,38 @@ select id, name, title, password, content, created_at, updated_at from board ord
 
 1. 글 목록 보기
 
-![img_3.png](img_3.png)
+![img_3](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/7b921f27-d29b-4522-a880-b6c5b76b2552)
+
+
 
 ---
 
 2. 글 상세 조회
 
-![img_5.png](img_5.png)
+![img_5](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/a3657385-50ea-47ed-8721-767c30d9a4c7)
+
 
 ---
 
-3. 글 등록 
+3. 글 등록
 
-![img_7.png](img_7.png)
+![img_7](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/fe8924c8-3118-4dcd-a4c7-9d8a7398c808)
 
 ---
 
 4. 글 수정
 
-![img_9.png](img_9.png)
+![img_9](https://github.com/kimkganghyun/SimpleBoard/assets/163385332/d00739e4-78d2-450a-a3d3-5bfa17d94073)
 
 ---
 
 5. 글 삭제
 
-![img_10.png](img_10.png)
+![img_10.png…]()
+
+
+
+
 
 
 
